@@ -9,11 +9,15 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   
   # Dependencies
-  s.add_dependency 'version',             '~> 1.0.0'
-  s.add_development_dependency 'bundler', '~> 1.3.0'
-  s.add_development_dependency 'rake',    '~> 10.0.0'
-  s.add_development_dependency 'rspec',   '~> 2.13.0'
-  s.add_development_dependency 'fuubar',  '~> 1.1.0'
+  s.add_dependency 'version', '~> 1.0.0'
+  s.add_development_dependency 'guard-bundler', '~> 1.0.0'
+  s.add_development_dependency 'guard-rspec',   '~> 2.5.0'
+  s.add_development_dependency 'guard-yard',    '~> 2.1.0'
+  s.add_development_dependency 'rake',          '~> 10.0.0'
+  s.add_development_dependency 'fuubar',        '~> 1.1.0'
+  s.add_development_dependency 'rb-fsevent',    '~> 0.9.0'
+  s.add_development_dependency 'redcarpet',     '~> 2.2.0'
+  s.add_development_dependency 'github-markup', '~> 0.7.0'
   
   # Pragmatically set variables
   s.homepage      = "http://github.com/RyanScottLewis/#{s.name}"
