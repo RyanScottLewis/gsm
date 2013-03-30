@@ -124,6 +124,116 @@ submodules:latest?              # Check to see if all submodules are at their la
 submodules:update               # Update all submodules to their latest tags
 ```
 
+## Why?
+
+Well, I will be using it to make Rails Asset Pipeline plugins.
+
+Here is an example of a Rails Asset Pipeline plugin gem for [spinjs][spinjs] (which [already exists][spinjs-rails], but lets forget about that.)
+
+**Files**
+
+`Gemfile`
+
+```rb
+source 'https://rubygems.org'
+
+gemspec
+```
+
+`spinjs-rails.gemspec`
+
+```rb
+require 'pathname'
+
+Gem::Specification.new do |s|
+  
+  # Variables
+  s.author      = 'Ryan Scott Lewis'
+  s.email       = 'ryan@rynet.us'
+  s.summary     = 'A Rails Asset Pipeline plugin for Spin.js'
+  s.license     = 'MIT'
+  
+  # Dependencies
+  s.add_dependency 'version',                  '~> 1.0.0'
+  s.add_dependency 'rails',                    '~> 3.0'
+  s.add_development_dependency 'bundler',      '~> 1.3.0'
+  s.add_development_dependency 'gsm',          '~> 0.1.0'
+  s.add_development_dependency 'sqlite3',      '~> 1.3'
+  s.add_development_dependency 'execjs',       '~> 1.4'
+  s.add_development_dependency 'therubyracer', '~> 0.11'
+  
+  # Pragmatically set variables
+  s.homepage      = "http://github.com/RyanScottLewis/#{s.name}"
+  s.version       = Pathname.glob('VERSION*').first.read rescue '0.0.0'
+  s.description   = s.summary
+  s.name          = Pathname.new(__FILE__).basename('.gemspec').to_s
+  s.require_paths = ['lib']
+  
+  s.files         =  Dir['{{Rake,Gem}file{.lock,},README*,VERSION,LICENSE,*.gemspec']
+  s.files         += Dir['lib/spinjs-rails/**/*']
+  s.files         += Dir['{assets,vendor}/**/*']
+  s.test_files    =  Dir['{examples,spec,test}/**/*']
+  
+end
+```
+
+`Rakefile`
+
+```rb
+require 'gpm/rake'
+
+GSM::Rake.new do |project|
+  
+  project.submodule do |submodule|
+    
+    submodule.name   = 'spinjs'
+    submodule.remote = 'git@github.com:fgnass/spin.js.git'
+    submodule.path   = 'lib/spinjs'
+    
+    submodule.after_update do |submodule|
+      source_path = submodule.path.join('dist/spin.js')
+      target_path = Pathname.new('vendor/javascripts')
+      
+      target_path.mkpath
+      FileUtils.cp(asset_path, target_path)
+    end
+    
+  end
+  
+end
+```
+
+`lib/spinjs-rails.rb`
+
+```rb
+require 'spinjs-rails/engine'
+
+module SpinjsRails
+  
+end
+```
+
+`lib/spinjs-rails/engine.rb`
+
+```rb
+module SpinjsRails
+
+  class Engine < ::Rails::Engine
+    
+  end
+  
+end
+```
+
+**Maintaining**
+
+Simply run the following:
+
+`$ rake spinjs:update`
+
+This will clone the repo if it doesn't exist.  
+Once the repo exists, this will checkout the latest tag and run the `after_update` block.
+
 ## Contributing
 
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
@@ -137,3 +247,6 @@ submodules:update               # Update all submodules to their latest tags
 ## Copyright
 
 Copyright (c) 2013 Ryan Scott Lewis. See LICENSE for details.
+
+[spinjs]: https://github.com/fgnass/spin.js
+[spinjs-rails]: https://github.com/dnagir/spinjs-rails
