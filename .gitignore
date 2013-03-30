@@ -1,3 +1,4 @@
 pkg/
+tmp/
+doc/
 .DS_Store
-spec/dummy/tmp
