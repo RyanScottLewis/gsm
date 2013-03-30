@@ -9,10 +9,11 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   
   # Dependencies
-  s.add_dependency 'version',          '~> 1.0'
-  s.add_development_dependency 'rake',           '~> 10.0'
-  s.add_development_dependency 'rspec',          '~> 2.13'
-  s.add_development_dependency 'fuubar',         '~> 1.1'
+  s.add_dependency 'version',             '~> 1.0.0'
+  s.add_development_dependency 'bundler', '~> 1.3.0'
+  s.add_development_dependency 'rake',    '~> 10.0.0'
+  s.add_development_dependency 'rspec',   '~> 2.13.0'
+  s.add_development_dependency 'fuubar',  '~> 1.1.0'
   
   # Pragmatically set variables
   s.homepage      = "http://github.com/RyanScottLewis/#{s.name}"
