@@ -15,7 +15,7 @@ Easily update all of your git projects's submodules to their latest tags.
 ### Plain Ol' Ruby
 
 ```rb
-require 'gpm'
+require 'gsm'
 
 submodule = GSM::Submodule.new('lib/coollib') # Accepts Pathname or Strings containing a file path.
 
@@ -93,7 +93,7 @@ project.submodules.update  # => false
 ### Rake
 
 ```rb
-require 'gpm/rake'
+require 'gsm/rake'
 
 GSM::Rake.new do |project|
   
@@ -180,7 +180,7 @@ end
 `Rakefile`
 
 ```rb
-require 'gpm/rake'
+require 'gsm/rake'
 
 GSM::Rake.new do |project|
   
