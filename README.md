@@ -95,14 +95,14 @@ project.submodules.update  # => false
 ```rb
 require 'gpm/rake'
 
-GSM::Rake.new do |config|
+GSM::Rake.new do |project|
   
-  config.submodule do |submodule|
+  project.submodule do |submodule|
     submodule.name   = 'coollib'                                    # Arbitrary name. Used as the Rake namespace and task. Gathered from remote URI if unset.
     submodule.remote = 'git@github.com:some-people/cool-js-lib.git' # The URI of the git submodule's remote.
   end
   
-  config.submodule do |submodule|
+  project.submodule do |submodule|
     submodule.remote = 'git@github.com:other-people/another-lib-coffee.git'
   end
   
