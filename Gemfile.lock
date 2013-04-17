@@ -2,13 +2,19 @@ PATH
   remote: .
   specs:
     gsm (0.0.1)
+      rugged (~> 0.17.0.b7)
       version (~> 1.0.0)
+
+PATH
+  remote: ~/Dropbox/Code/Ruby/Forks/fakefs
+  specs:
+    fakefs (0.4.2)
 
 GEM
   remote: https://rubygems.org/
   specs:
     coderay (1.0.9)
-    diff-lcs (1.2.1)
+    diff-lcs (1.2.2)
     formatador (0.2.4)
     fuubar (1.1.0)
       rspec (~> 2.0)
@@ -24,7 +30,7 @@ GEM
     guard-bundler (1.0.0)
       bundler (~> 1.0)
       guard (~> 1.1)
-    guard-rspec (2.5.1)
+    guard-rspec (2.5.2)
       guard (>= 1.1)
       rspec (~> 2.11)
     guard-yard (2.1.0)
@@ -32,7 +38,10 @@ GEM
       yard (>= 0.7.0)
     listen (0.7.3)
     lumberjack (1.0.3)
+    metaclass (0.0.1)
     method_source (0.8.1)
+    mocha (0.13.3)
+      metaclass (~> 0.0.1)
     pry (0.9.12)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -48,10 +57,11 @@ GEM
     rspec-expectations (2.13.0)
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-instafail (0.2.4)
-    rspec-mocks (2.13.0)
+    rspec-mocks (2.13.1)
     ruby-progressbar (1.0.2)
+    rugged (0.17.0.b7)
     slop (3.4.4)
-    thor (0.18.0)
+    thor (0.18.1)
     version (1.0.0)
     yard (0.8.5.2)
 
@@ -59,12 +69,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  fakefs!
   fuubar (~> 1.1.0)
   github-markup (~> 0.7.0)
   gsm!
   guard-bundler (~> 1.0.0)
   guard-rspec (~> 2.5.0)
   guard-yard (~> 2.1.0)
+  mocha (~> 0.13.0)
   rake (~> 10.0.0)
   rb-fsevent (~> 0.9.0)
   redcarpet (~> 2.2.0)
